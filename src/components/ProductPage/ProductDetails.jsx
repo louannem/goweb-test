@@ -11,26 +11,45 @@ import { ProductCategory } from "../ProductCategory"
  * @returns JSX element
  */
 export const ProductDetails = () => {
+    //Get product id
+    const param = useParams()
+    const id = param.id
+
     const [product, setProduct] = useState(() => {
-        const saved = localStorage.getItem("Updated product");
+        const saved = localStorage.getItem(`Updated product ${id}`);
         const initialValue = JSON.parse(saved);
         return initialValue || ''
     })
     const [state, dispatch] = useReducer(productsReducer, initialState)
 
-
     useEffect(() => {
-        //Datas will get fetched if we don't have any stored locally
-        if(localStorage.getItem('Updated product') === null) { FetchProduct.getCurrentProduct(id, setProduct, dispatch) } 
 
+        let currentProduct, updatedProduct
+
+        //First fetch if we don't have any saved data in localstorage
+        if(localStorage.getItem(`Updated product ${id}`) === null) {
+            FetchProduct.getCurrentProduct(id, setProduct, dispatch) 
+
+            //If we do have data
+        } else if(localStorage.getItem('Current product') !== null && localStorage.getItem(`Updated product ${id}`) !== null) {
+             currentProduct = JSON.parse(localStorage.getItem('Current product'))
+             updatedProduct = JSON.parse(localStorage.getItem(`Updated product ${id}`))
+
+             //Check if we are on saved product page
+             if(currentProduct.id !== updatedProduct.id) {    
+                //console.log(currentProduct, )             
+                FetchProduct.getCurrentProduct(id, setProduct, dispatch) 
+            } 
+        }
+        
+       
+      
         //Once we have fetched the data, they get added to the localStorage
-        product && localStorage.setItem('Current product', product )
+        
         
     }, [])
 
-    //Get product id
-    const param = useParams()
-    const id = param.id
+
 
 
 
@@ -64,7 +83,7 @@ export const ProductDetails = () => {
 
         setProduct(newProduct)
         dispatch({type: "updated_product", payload: newProduct})
-        localStorage.setItem("Updated product", JSON.stringify(newProduct));
+        localStorage.setItem(`Updated product ${id}`, JSON.stringify(newProduct));
 
         FetchProduct.updateCurrentProduct(id, product)
     }

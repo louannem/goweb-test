@@ -33,7 +33,7 @@ export class FetchProduct {
         .then(json=> {
             resolve(json) ;
             dispatch({type: 'current_product', payload: json});
-            localStorage.setItem('Test product', JSON.stringify(json) )
+            localStorage.setItem('Current product', JSON.stringify(json) )
         })
         .catch( error => console.log(error))
     }
