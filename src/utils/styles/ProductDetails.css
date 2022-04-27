@@ -1,0 +1,65 @@
+.article-wrapper {
+    width: 100%;
+    display: flex;
+}
+
+.article-image { 
+    width: 45%; 
+    height: 337px;
+    background-color: #ffff;
+    box-shadow: 0px 2px 5px #0000001A;
+    border-radius: 3px;
+    margin-right: 20px;
+}
+
+.article-wrapper h2 {
+    text-align: left;
+    font: normal normal bold 24px/32px Roboto;
+    letter-spacing: 0px;
+    color: var(---main-blue);
+    margin: 0;
+}
+
+.article-details-wrapper { display: flex; flex-direction: column; width: 55%;}
+
+.article-description-category { display: flex;  width: 100%;}
+.article-description { width: 60%;}
+.article-description p { 
+    text-align: left;
+    font: normal normal normal 16px/26px Roboto;
+    letter-spacing: 0px;
+    color: var(---darkgrey)
+}
+
+.article-category .product-category { margin-top: 20px }
+
+.article-price { width: 60%;}
+.price-info-wrapper { display: flex; height: 40px; justify-content: space-between; align-items: center;}
+form { height: 100%;}
+
+.price-info-wrapper input {
+    width: 144px;
+    height: 100%;
+
+    border: 1px solid var(---main-blue);
+    border-radius: 3px;
+}
+
+
+.price-with-vat {
+    text-align: left;
+    font: normal 16px/21px Roboto;
+    color: var(---darkgrey)
+}
+
+.price-with-vat span { font-weight : bold;}
+
+button[type="submit"] {
+    width: 137px;
+    height: 40px;
+    background: var(---main-blue) 0% 0% no-repeat padding-box;
+    border: 1px solid var(---main-blue);
+    border-radius: 3px;
+    color: #ffffff;
+    margin-top: 40px;
+}
