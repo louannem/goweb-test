@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
+import PropTypes from 'prop-types'
 import "../utils/styles/PageHeader.css"
 import BackButton from "../assets/Back_button.svg"
+
 
 /**
  * Page's header basic component
@@ -24,4 +26,9 @@ export const PageHeader = ({backButton, title}) => {
 PageHeader.defaultProps = {
     backButton : false,
     title: "Product title"
+}
+
+PageHeader.propTypes = {
+    backButton: PropTypes.bool,
+    title: PropTypes.string
 }

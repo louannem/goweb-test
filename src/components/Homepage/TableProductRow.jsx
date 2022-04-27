@@ -30,7 +30,13 @@ export const TableProductRow = ({product}) => {
 
 
 TableProductRow.propTypes = {
-    name: PropTypes.string,
-    category: PropTypes.string,
-    price: PropTypes.number
+    product: PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        image: PropTypes.string,
+        description: PropTypes.string,
+        category: PropTypes.string,
+        price: PropTypes.number,
+        priceWithVAT: PropTypes.number
+    })
   };

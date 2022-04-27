@@ -4,6 +4,7 @@ import { FetchProduct } from "../../utils/Service/FetchProduct"
 import "../../utils/styles/ProductDetails.css"
 import { ProductCategory } from "../ProductCategory"
 import { Product } from "../../utils/Service/Product"
+import PropTypes from "prop-types"
 
 /**
  * Products details to display
@@ -45,9 +46,7 @@ export const ProductDetails = () => {
             } else {
                 document.title = currentProduct.title || updatedProduct.title
             }
-        }
-                
-        
+        }       
     }, [])
 
 
@@ -66,22 +65,28 @@ export const ProductDetails = () => {
                 
                  return false 
             }
-           
         }
-
     } 
 
 
+    /**
+     * Function to update a product's price & keep the new info into the localstorage
+     * @param {e} e 
+     */
     const handleUpdateProduct = (e) => {
         e.preventDefault()
+
         let input = document.querySelector('input')
         let newPrice = input.valueAsNumber
 
+        //Creates our updated product with the Product class & adds it to the component state
         let newProduct = new Product(product, newPrice)
         setProduct(newProduct)
         
+        //Adds the updated product into the localstorage
         localStorage.setItem(`Updated product ${id}`, JSON.stringify(newProduct));
 
+        //Sends the updates product infos to the API
         FetchProduct.updateCurrentProduct(id, product)
     }
 
@@ -125,4 +130,17 @@ export const ProductDetails = () => {
             </div>
         </article>
     )
+}
+
+
+ProductDetails.propTypes = {
+    product: PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        image: PropTypes.string,
+        description: PropTypes.string,
+        category: PropTypes.string,
+        price: PropTypes.number,
+        priceWithVAT: PropTypes.number
+    })
 }
