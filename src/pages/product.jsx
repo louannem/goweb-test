@@ -8,6 +8,7 @@ import { FetchProduct } from "../utils/Service/FetchProduct"
 export const ProductPage = () => {
     const {id} = useParams()
     const [currentProduct, setCurrentProduct] = useState()
+    
 
     useEffect(() => {
         FetchProduct.getCurrentProduct(id, setCurrentProduct) 
@@ -18,7 +19,7 @@ export const ProductPage = () => {
         currentProduct && 
         <main className="page-wrapper">
             <PageHeader title={currentProduct.title} />
-            <ProductDetails  product={currentProduct}/>    
+            <ProductDetails />    
         </main>
         
         

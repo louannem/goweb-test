@@ -1,19 +1,23 @@
+import { Product } from "./Product";
+
 /**
  * Service to fetch & update products
  */
 export class FetchProduct {
     constructor(object) {
-        this.id = object.id;
-        this.title = object.title
-     }
+
+    }
 
      /**
       * GET products
       */
-    static async getProducts(resolve){
+    static async getProducts(resolve, dispatch){
         await fetch('https://fakestoreapi.com/products?limit=7')
         .then(response =>  response.json())
-        .then(json =>  { resolve(json) })
+        .then(json =>  { 
+            resolve(json) ; 
+            dispatch({type: 'get_products', payload: json})
+        })
         .catch( error => console.log(error.message) )
     }
 
@@ -23,14 +27,27 @@ export class FetchProduct {
      * @param {function} resolve Gets the fetched data to a component
      * @returns Promise
      */
-    static async getCurrentProduct(id, resolve) {
-        let product = await fetch('https://fakestoreapi.com/products/'+id)
+    static async getCurrentProduct(id, resolve, dispatch) {
+        await fetch('https://fakestoreapi.com/products/'+id)
         .then(res=>res.json())
         .then(json=> {
-            resolve(json) 
-            return json 
+            resolve(json) ;
+            dispatch({type: 'current_product', payload: json})
         })
-        
-        return product
+        .catch( error => console.log(error))
+    }
+
+
+    
+    static updateCurrentProduct(id, product) {
+        fetch(`https://fakestoreapi.com/products/${id}`,{
+            method:"PUT",
+            body:JSON.stringify(product)
+        })
+            .then(res=>res.json())
+            .then(json=> {
+                console.log(json)
+            })
+            .catch( error => console.log(error))
     }
 }

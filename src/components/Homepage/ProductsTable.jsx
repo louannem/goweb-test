@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useReducer } from "react"
 import { FetchProduct } from "../../utils/Service/FetchProduct"
+import { initialState, productsReducer } from "../../utils/store/reducer"
 import "../../utils/styles/ProductsTable.css"
 import { TableProductRow } from "./TableProductRow"
 
 export const ProductsTable = () => {
     const  [products, setProducts] = useState()
+    const [state, dispatch] = useReducer(productsReducer, initialState)
+    
     useEffect(() => {
-        FetchProduct.getProducts(setProducts)
+        FetchProduct.getProducts(setProducts, dispatch)
     }, [])
 
     return(

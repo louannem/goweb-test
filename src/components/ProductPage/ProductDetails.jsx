@@ -1,3 +1,7 @@
+import { useEffect, useState, useReducer } from "react"
+import { useParams } from "react-router-dom"
+import { initialState, productsReducer } from "../../utils/store/reducer"
+import { FetchProduct } from "../../utils/Service/FetchProduct"
 import "../../utils/styles/ProductDetails.css"
 import { ProductCategory } from "../ProductCategory"
 
@@ -6,9 +10,24 @@ import { ProductCategory } from "../ProductCategory"
  * @param {object} product Product's datas fetched & passed by the parent component
  * @returns JSX element
  */
-export const ProductDetails = ({product}) => {
+export const ProductDetails = () => {
+    const [product, setProduct] = useState()
+    const [state, dispatch] = useReducer(productsReducer, initialState)
+
+    useEffect(() => {
+        FetchProduct.getCurrentProduct(id, setProduct, dispatch) 
+        product && localStorage.setItem('Current product', product )
+        
+    }, [])
+
     //Limits the number of decimals in prices including VAT
-    const priceWithVAT = product.price + product.price*0.2
+    //const priceWithVAT = product.price + product.price*0.2
+
+    //Get product id
+    const param = useParams()
+    const id = param.id
+
+    
 
     /**
      * Enabled submit button after the price has been changed in the input
@@ -20,10 +39,33 @@ export const ProductDetails = ({product}) => {
         if(e.target.value === product.price) { 
             submitBtn.disabled = true
         } else { submitBtn.disabled = false }
-        
     } 
 
+
+    const handleUpdateProduct = (e) => {
+        e.preventDefault()
+        let input = document.querySelector('input')
+        let newPrice = input.valueAsNumber
+
+        let newProduct = {
+            id: product.id,
+            title : product.title,
+            description: product.description,
+            image: product.image,
+            category: product.category,
+            price: newPrice,
+            pricewithVAT: newPrice + newPrice*0.2
+        }
+
+        setProduct(newProduct)
+        dispatch({type: "updated_product", payload: newProduct})
+        localStorage.setItem("Current product", JSON.stringify(newProduct));
+
+        FetchProduct.updateCurrentProduct(id, product)
+    }
+
     return(
+        product && 
         <article className="article-wrapper">
             <div className="article-image">
                 <img  alt="Product" src={product.image} />
@@ -50,12 +92,12 @@ export const ProductDetails = ({product}) => {
                         <div className="price-info-wrapper">
                             <form>
                                 <label htmlFor="price-input"></label>
-                                <input type="text" defaultValue={product.price} id="price-input"  onKeyUp={enabledButton} ></input>
+                                <input type="number" defaultValue={product.price} id="price-input"  onKeyUp={enabledButton} ></input>
                             </form>
-                            <div className="price-with-vat"><span>Price</span> (including VAT): {priceWithVAT.toFixed(2)}€</div>
+                            <div className="price-with-vat"><span>Price</span> (including VAT): {product.price + product.price*0.2}€</div>
                         </div>
                         <div className="update-product">
-                            <button type="submit" disabled>Update product</button>
+                            <button type="submit" onClick={handleUpdateProduct}>Update product</button>
                         </div>
                     </div>
                 </div>

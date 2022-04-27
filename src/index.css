@@ -22,6 +22,7 @@ code {
   ---orange: #FFA846;
   ---green : #32B436;
   display: flex;
+  background-color: var(---lightgrey);
 }
 
 
