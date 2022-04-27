@@ -11,23 +11,28 @@ import { ProductCategory } from "../ProductCategory"
  * @returns JSX element
  */
 export const ProductDetails = () => {
-    const [product, setProduct] = useState()
+    const [product, setProduct] = useState(() => {
+        const saved = localStorage.getItem("Updated product");
+        const initialValue = JSON.parse(saved);
+        return initialValue || ''
+    })
     const [state, dispatch] = useReducer(productsReducer, initialState)
 
+
     useEffect(() => {
-        FetchProduct.getCurrentProduct(id, setProduct, dispatch) 
+        //Datas will get fetched if we don't have any stored locally
+        if(localStorage.getItem('Updated product') === null) { FetchProduct.getCurrentProduct(id, setProduct, dispatch) } 
+
+        //Once we have fetched the data, they get added to the localStorage
         product && localStorage.setItem('Current product', product )
         
     }, [])
-
-    //Limits the number of decimals in prices including VAT
-    //const priceWithVAT = product.price + product.price*0.2
 
     //Get product id
     const param = useParams()
     const id = param.id
 
-    
+
 
     /**
      * Enabled submit button after the price has been changed in the input
@@ -59,7 +64,7 @@ export const ProductDetails = () => {
 
         setProduct(newProduct)
         dispatch({type: "updated_product", payload: newProduct})
-        localStorage.setItem("Current product", JSON.stringify(newProduct));
+        localStorage.setItem("Updated product", JSON.stringify(newProduct));
 
         FetchProduct.updateCurrentProduct(id, product)
     }

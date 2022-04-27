@@ -32,13 +32,14 @@ export class FetchProduct {
         .then(res=>res.json())
         .then(json=> {
             resolve(json) ;
-            dispatch({type: 'current_product', payload: json})
+            dispatch({type: 'current_product', payload: json});
+            localStorage.setItem('Test product', JSON.stringify(json) )
         })
         .catch( error => console.log(error))
     }
 
 
-    
+
     static updateCurrentProduct(id, product) {
         fetch(`https://fakestoreapi.com/products/${id}`,{
             method:"PUT",
