@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react"
+import { FetchProduct } from "../../utils/Service/FetchProduct"
 import "../../utils/styles/ProductsTable.css"
 import { TableProductRow } from "./TableProductRow"
 
 export const ProductsTable = () => {
     const  [products, setProducts] = useState()
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products?limit=7')
-        .then(res=>res.json())
-        .then(json=>{
-            console.log(json)
-            setProducts(json)
-            return json
-        })
-
+        FetchProduct.getProducts(setProducts)
     }, [])
 
     return(

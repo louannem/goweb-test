@@ -5,12 +5,21 @@
 
 .article-image { 
     width: 45%; 
-    height: 337px;
+    min-height: 437px;
+    max-height: 600px;
     background-color: #ffff;
     box-shadow: 0px 2px 5px #0000001A;
     border-radius: 3px;
     margin-right: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4% 2%;
+    box-sizing: border-box;
 }
+
+.article-image img { max-width: 50%; max-height: 100%;}
 
 .article-wrapper h2 {
     text-align: left;
@@ -23,7 +32,7 @@
 .article-details-wrapper { display: flex; flex-direction: column; width: 55%;}
 
 .article-description-category { display: flex;  width: 100%;}
-.article-description { width: 60%;}
+
 .article-description p { 
     text-align: left;
     font: normal normal normal 16px/26px Roboto;
@@ -31,15 +40,18 @@
     color: var(---darkgrey)
 }
 
-.article-category .product-category { margin-top: 20px }
+.article-description, .article-price { width: 75%;}
 
-.article-price { width: 60%;}
-.price-info-wrapper { display: flex; height: 40px; justify-content: space-between; align-items: center;}
+.article-category {  margin-left: 40px; }
+.article-category .product-category { margin-top: 20px;  }
+
+.price-info-wrapper { display: flex; height: 40px; margin-top: 20px; justify-content: space-between; align-items: center;}
 form { height: 100%;}
 
 .price-info-wrapper input {
     width: 144px;
     height: 100%;
+    color: var(---darkgrey);
 
     border: 1px solid var(---main-blue);
     border-radius: 3px;
