@@ -11,12 +11,11 @@ export class FetchProduct {
      /**
       * GET products
       */
-    static async getProducts(resolve, dispatch){
+    static async getProducts(resolve){
         await fetch('https://fakestoreapi.com/products?limit=7')
         .then(response =>  response.json())
         .then(json =>  { 
-            resolve(json) ; 
-            dispatch({type: 'get_products', payload: json})
+            resolve(json) 
         })
         .catch( error => console.log(error.message) )
     }
@@ -27,12 +26,11 @@ export class FetchProduct {
      * @param {function} resolve Gets the fetched data to a component
      * @returns Promise
      */
-    static async getCurrentProduct(id, resolve, dispatch) {
+    static async getCurrentProduct(id, resolve) {
         await fetch('https://fakestoreapi.com/products/'+id)
         .then(res=>res.json())
         .then(json=> {
-            resolve(json) ;
-            dispatch({type: 'current_product', payload: json});
+            resolve(json) 
             localStorage.setItem('Current product', JSON.stringify(json) )
         })
         .catch( error => console.log(error))
