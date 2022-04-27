@@ -8,6 +8,8 @@ export const ProductsTable = () => {
     
     useEffect(() => {
         FetchProduct.getProducts(setProducts)
+
+        document.title = "Circle Products"
     }, [])
 
     return(

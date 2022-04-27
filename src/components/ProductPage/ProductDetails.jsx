@@ -1,6 +1,5 @@
-import { useEffect, useState, useReducer } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { initialState, productsReducer } from "../../utils/store/reducer"
 import { FetchProduct } from "../../utils/Service/FetchProduct"
 import "../../utils/styles/ProductDetails.css"
 import { ProductCategory } from "../ProductCategory"
@@ -22,7 +21,9 @@ export const ProductDetails = () => {
         const initialValue = JSON.parse(saved);
         return initialValue || ''
     })
-    const [state, dispatch] = useReducer(productsReducer, initialState)
+
+    let roundedPrice
+    if(product.priceWithVAT) { roundedPrice = product.priceWithVAT.toFixed(2)}
 
     useEffect(() => {
         //Variables to store & parse localstorage datas
@@ -31,21 +32,23 @@ export const ProductDetails = () => {
         //First fetch if we don't have any saved data in localstorage
         if(localStorage.getItem(`Updated product ${id}`) === null) {
             FetchProduct.getCurrentProduct(id, setProduct) 
+            if(product) { document.title = product.title}
 
             //If we do have data, we parse every needed datas
         } else if(localStorage.getItem('Current product') !== null && localStorage.getItem(`Updated product ${id}`) !== null) {
              currentProduct = JSON.parse(localStorage.getItem('Current product'))
              updatedProduct = JSON.parse(localStorage.getItem(`Updated product ${id}`))
 
-             //Check if we are on an already saved product page, then fetch
+             //Check if we are on an already saved product page, then fetch if it's not the case
              if(currentProduct.id !== updatedProduct.id) {               
                 FetchProduct.getCurrentProduct(id, setProduct) 
-            } 
-        }        
+            } else {
+                document.title = currentProduct.title || updatedProduct.title
+            }
+        }
+                
         
     }, [])
-
-
 
 
 
@@ -53,12 +56,19 @@ export const ProductDetails = () => {
      * Enabled submit button after the price has been changed in the input
      * @param {event} e 
      */
-    const enabledButton = (e) => { 
-        const submitBtn = document.querySelector('button[type="submit"]')
+    const enabledButton = () => { 
+        let input = document.querySelector('input')
+       
+        if(input) {
+            if(input.valueAsNumber === product.price || input.value === product.price) { 
+                return true
+            } else if(input.valueAsNumber !== product.price || input.value !== product.price) {
+                
+                 return false 
+            }
+           
+        }
 
-        if(e.target.value === product.price) { 
-            submitBtn.disabled = true
-        } else { submitBtn.disabled = false }
     } 
 
 
@@ -66,8 +76,6 @@ export const ProductDetails = () => {
         e.preventDefault()
         let input = document.querySelector('input')
         let newPrice = input.valueAsNumber
-
-
 
         let newProduct = new Product(product, newPrice)
         setProduct(newProduct)
@@ -107,10 +115,10 @@ export const ProductDetails = () => {
                                 <label htmlFor="price-input"></label>
                                 <input type="number" defaultValue={product.price} id="price-input"  onKeyUp={enabledButton} ></input>
                             </form>
-                            <div className="price-with-vat"><span>Price</span> (including VAT): {product.price + product.price*0.2}€</div>
+                            <div className="price-with-vat"><span>Price</span> (including VAT): {roundedPrice ? roundedPrice : product.price + product.price*0.2}€</div>
                         </div>
                         <div className="update-product">
-                            <button type="submit" onClick={handleUpdateProduct}>Update product</button>
+                            <button type="submit" onClick={handleUpdateProduct} disabled={enabledButton()}>Update product</button>
                         </div>
                     </div>
                 </div>

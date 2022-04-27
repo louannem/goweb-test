@@ -11,14 +11,17 @@ export const ProductPage = () => {
     
 
     useEffect(() => {
-        FetchProduct.getCurrentProduct(id, setCurrentProduct) 
+        FetchProduct.getCurrentProduct(id, setCurrentProduct)
+
+        if(currentProduct) { document.title = currentProduct.title}
+
     }, [])
 
 
     return(
         currentProduct && 
         <main className="page-wrapper">
-            <PageHeader title={currentProduct.title} />
+            <PageHeader backButton={true} title={currentProduct.title} />
             <ProductDetails />    
         </main>
         

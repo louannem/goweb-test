@@ -4,9 +4,6 @@ import { Product } from "./Product";
  * Service to fetch & update products
  */
 export class FetchProduct {
-    constructor(object) {
-
-    }
 
      /**
       * GET products
@@ -15,7 +12,16 @@ export class FetchProduct {
         await fetch('https://fakestoreapi.com/products?limit=7')
         .then(response =>  response.json())
         .then(json =>  { 
-            resolve(json) 
+            let productsArray = []
+
+            //Uses the Product class to creates our clean up product array
+            for(let product of json) {
+                let newProduct = new Product(product, product.price)
+                productsArray.push(newProduct)
+            }
+            //Function to get our data into our component's state
+            resolve(productsArray)
+ 
         })
         .catch( error => console.log(error.message) )
     }

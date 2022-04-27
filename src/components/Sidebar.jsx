@@ -15,9 +15,9 @@ export const SideBar = () => {
             <div className="nav-links-wrapper">
                 <div className="nav-links-block">
                     <ul>
-                        <li><Link to="/home">Dashboard</Link></li>
-                        <li className="active"><Link to="/home">Products management</Link></li>
-                        <li><Link to="/home">Employees management</Link></li>
+                        <li><Link to="/">Dashboard</Link></li>
+                        <li className="active"><Link to="/">Products management</Link></li>
+                        <li><Link to="/">Employees management</Link></li>
                     </ul>
                 </div>
 
