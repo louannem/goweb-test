@@ -21,7 +21,7 @@ export class FetchProduct {
             }
             //Function to get our data into our component's state
             resolve(productsArray)
-            loading(false)
+            loading()
  
         })
         .catch( error => console.log(error) )
@@ -38,7 +38,7 @@ export class FetchProduct {
         .then(res=>res.json())
         .then(json=> {
             resolve(json) 
-            //loading(false)
+            loading()
             localStorage.setItem('Current product', JSON.stringify(json) )
 
         })

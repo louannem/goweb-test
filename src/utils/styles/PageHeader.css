@@ -16,8 +16,20 @@ h1 {
     margin: auto;
 }
 
-
+/*** TABLET ***/
 @media screen and (min-width: 490px) and (max-width: 1000px) {
     header { align-items: flex-start;}
     h1 { font-size: 30px; line-height: 40px; padding: 0px 10px;}
+}
+
+/*** MOBILE ***/
+@media screen and (max-width: 490px) {
+    header { padding: 40px 0px }
+    h1 { font-size: 25px;}
+
+    header img { 
+        width: 25px;
+        height: 25px;
+        margin: 10px;
+    }
 }

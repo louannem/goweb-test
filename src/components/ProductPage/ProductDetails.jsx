@@ -6,6 +6,7 @@ import { ProductCategory } from "../ProductCategory"
 import { PriceInput } from "./PriceInput"
 import { Product } from "../../utils/Service/Product"
 import PropTypes from "prop-types"
+import { Loading } from "../../pages/Loading"
 
 /**
  * Products details to display
@@ -47,8 +48,8 @@ export const ProductDetails = () => {
             } else {
                 document.title = currentProduct.title || updatedProduct.title
             }
-        }   
-  
+        }    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
@@ -57,7 +58,7 @@ export const ProductDetails = () => {
      * Enabled submit button after the price has been changed in the input
      * @param {event} e 
      */
-    const enabledButton = () => { 
+    /*const enabledButton = () => { 
         let input = document.querySelector('input')
        
         if(input) {
@@ -67,7 +68,7 @@ export const ProductDetails = () => {
                  return false 
             }
         }
-    } 
+    } */
 
 
     /**

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Loading } from "../../pages/Loading"
 import { FetchProduct } from "../../utils/Service/FetchProduct"
 import "../../utils/styles/ProductsTable.css"
 import { TableProductRow } from "./TableProductRow"
@@ -7,11 +8,18 @@ export const ProductsTable = () => {
     const  [products, setProducts] = useState()
     const [isLoading, setLoading] = useState(true)
 
+    const changeLoading = () => {
+        setLoading(false)
+    }
+
+    const getData = (data) => {
+        setProducts(data)
+    }
     
     useEffect(() => {
         document.title = "Circle Products"
 
-        FetchProduct.getProducts(setProducts, setLoading)
+        FetchProduct.getProducts(getData, changeLoading)
        
         
         if(products) {
@@ -30,7 +38,7 @@ export const ProductsTable = () => {
         }
     }, [])
 
-    if(isLoading) { return ( <span>Loading...</span>)}
+    if(isLoading) { return ( <Loading />)}
     return(
         <main>
             <table>

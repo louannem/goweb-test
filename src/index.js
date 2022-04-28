@@ -6,10 +6,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/homepage';
 import { SideBar } from './components/Sidebar';
 import { ProductPage } from './pages/product';
-import { FetchProduct } from './utils/Service/FetchProduct';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-FetchProduct.getProducts()
 
 root.render(
   <React.StrictMode>

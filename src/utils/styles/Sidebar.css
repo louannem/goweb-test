@@ -42,7 +42,24 @@ nav ul li { list-style-type: none; margin-bottom: 33px; color: #FFFFFF;}
     margin-bottom: 33px;
 }
 
-
+/*** TABLET ***/
 @media screen and (min-width: 490px) and (max-width: 1000px) {
     nav { width: 15%}
+}
+
+/** MOBILE **/
+@media screen and (max-width: 489px) {
+    nav { padding: 0; width: 100%; min-height: 100px; max-height: 100px; flex-direction: row;}
+    nav img { margin: 0px ; width: 100px ;}
+
+    .nav-links-block-separator { display: none}
+    .nav-links-wrapper ul{ display: flex;}
+    nav ul li { margin-bottom: 0;}
+    .nav-links-block a { font-size: 14px;}
+
+    .active a::before  {
+        height: 5px;
+        width: 5px;
+        left: -5px;
+    }
 }
