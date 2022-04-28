@@ -19,23 +19,31 @@ export const ProductsTable = () => {
     useEffect(() => {
         document.title = "Circle Products"
 
-        FetchProduct.getProducts(getData, changeLoading)
-       
         
-        if(products) {
+        //If no fetching has been done, we fetch the products
+        if(!localStorage.getItem('Products array')) { 
+            FetchProduct.getProducts(getData, changeLoading)
+
+        //Updates current data in localStorage
+        } else { 
+            //FetchProduct.getProducts(getData, changeLoading) 
+            setProducts(JSON.parse(localStorage.getItem('Products array')))
+
             let updatedProductsArray = []
-            for(let product of products) {
-                
+
+            for(let product of JSON.parse(localStorage.getItem('Products array'))) {
                 if(localStorage.getItem(`Updated product ${product.id}`)) {
                     let updatedProduct = JSON.parse(localStorage.getItem(`Updated product ${product.id}`))
-                
+
                     product = { ...product, price: updatedProduct.price, priceWithVAT: updatedProduct.price + updatedProduct.price*0.2}
                     updatedProductsArray.push(product)
                     setProducts(updatedProductsArray)
-
-                } 
+                    setLoading(false)
+                    //console.log(products)
+                }
             }
         }
+
     }, [])
 
     if(isLoading) { return ( <Loading />)}

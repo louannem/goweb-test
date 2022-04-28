@@ -21,6 +21,7 @@ export class FetchProduct {
             }
             //Function to get our data into our component's state
             resolve(productsArray)
+            localStorage.setItem('Products array', JSON.stringify(json))
             loading()
  
         })
@@ -47,6 +48,11 @@ export class FetchProduct {
 
 
 
+    /**
+     * Sends an updated product
+     * @param {number} id Updated product's id
+     * @param {object} product Updates products to send 
+     */
     static updateCurrentProduct(id, product) {
         fetch(`https://fakestoreapi.com/products/${id}`,{
             method:"PUT",
@@ -54,7 +60,7 @@ export class FetchProduct {
         })
             .then(res=>res.json())
             .then(json=> {
-                console.log(json)
+               
             })
             .catch( error => console.log(error))
     }
