@@ -45,12 +45,17 @@
 .article-category {  margin-left: 40px; }
 .article-category .product-category { margin-top: 20px;  }
 
-.price-info-wrapper { display: flex; height: 40px; margin-top: 20px; justify-content: space-between; align-items: center;}
-
+.price-info-wrapper { 
+    display: flex; 
+    height: 40px; 
+    margin-top: 20px; 
+    justify-content: space-between; 
+    align-items: center;
+}
 
 
 .price-with-vat {
-    text-align: left;
+    text-align: right;
     font: normal 16px/21px Roboto;
     color: var(---darkgrey)
 }
@@ -82,6 +87,16 @@ button[type="submit"] {
 @media screen and (max-width: 490px) {
     .article-wrapper { flex-direction: column; align-items: center;}
     .article-wrapper .article-image { width: 100%; margin: 0; padding: 0}
+
+    .article-image {
+        max-height: 300px;
+        min-height: 300px;
+    }
+
+    .article-image img { 
+        max-width: 40%;
+        max-height: 55%;
+    }
 
     .article-details-wrapper { margin-top: 30px; width: 90%; justify-content: space-between;}
 

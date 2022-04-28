@@ -6,20 +6,20 @@ import { ProductDetails } from "../components/ProductPage/ProductDetails"
 import { FetchProduct } from "../utils/Service/FetchProduct"
 import { Loading } from "./Loading"
 
+/**
+ * Product page
+ * @returns JSX element
+ */
 export const ProductPage = () => {
     const {id} = useParams()
     const [currentProduct, setCurrentProduct] = useState()
 
     const [isLoading, setLoading] = useState(true)
+    const [hasError, setError] = useState(false)
 
-    const changeLoading = () => {
-        setLoading(false)
-    }
-
-    
 
     useEffect(() => {
-        FetchProduct.getCurrentProduct(id, setCurrentProduct, changeLoading)
+        FetchProduct.getCurrentProduct(id, setCurrentProduct, setLoading, setError)
 
         if(currentProduct) { document.title = currentProduct.title}
 
@@ -27,6 +27,7 @@ export const ProductPage = () => {
 
 
     if(isLoading) { return (<Loading />)}
+    if(hasError) { return (<span>Opps ! an error has occured.</span>)}
     return(
         currentProduct && 
         <main className="page-wrapper">

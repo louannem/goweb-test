@@ -8,7 +8,7 @@ export class FetchProduct {
      /**
       * GET products
       */
-    static async getProducts(resolve, loading){
+    static async getProducts(resolve, loading, setError){
         await fetch('https://fakestoreapi.com/products?limit=7')
         .then(response =>  response.json())
         .then(json =>  { 
@@ -22,10 +22,9 @@ export class FetchProduct {
             //Function to get our data into our component's state
             resolve(productsArray)
             localStorage.setItem('Products array', JSON.stringify(json))
-            loading()
- 
+            loading(false) 
         })
-        .catch( error => console.log(error) )
+        .catch( error => setError(true) )
     }
 
     /**
@@ -34,7 +33,7 @@ export class FetchProduct {
      * @param {function} resolve Gets the fetched data to a component
      * @returns Promise
      */
-    static async getCurrentProduct(id, resolve, loading) {
+    static async getCurrentProduct(id, resolve, loading, hasError) {
         await fetch('https://fakestoreapi.com/products/'+id)
         .then(res=>res.json())
         .then(json=> {
@@ -43,7 +42,7 @@ export class FetchProduct {
             localStorage.setItem('Current product', JSON.stringify(json) )
 
         })
-        .catch( error => console.log(error))
+        .catch( error => hasError(true))
     }
 
 

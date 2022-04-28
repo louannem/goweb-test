@@ -7,6 +7,7 @@ import { PriceInput } from "./PriceInput"
 import { Product } from "../../utils/Service/Product"
 import PropTypes from "prop-types"
 import { Loading } from "../../pages/Loading"
+import { Error } from "../../pages/Error"
 
 /**
  * Products details to display
@@ -25,6 +26,10 @@ export const ProductDetails = () => {
         return initialValue || ''
     })
 
+    const [isLoading, setLoading] = useState(true)
+    const [hasError, setError] = useState(false)
+
+
     let roundedPrice
     if(product.priceWithVAT) { roundedPrice = product.priceWithVAT.toFixed(2)}
 
@@ -34,7 +39,7 @@ export const ProductDetails = () => {
 
         //First fetch if we don't have any saved data in localstorage
         if(localStorage.getItem(`Updated product ${id}`) === null) {
-            FetchProduct.getCurrentProduct(id, setProduct) 
+            FetchProduct.getCurrentProduct(id, setProduct, setLoading, setError) 
             if(product) { document.title = product.title}
 
             //If we do have data, we parse every needed datas
@@ -44,11 +49,14 @@ export const ProductDetails = () => {
 
              //Check if we are on an already saved product page, then fetch if it's not the case
              if(currentProduct.id !== updatedProduct.id) {               
-                FetchProduct.getCurrentProduct(id, setProduct) 
+                FetchProduct.getCurrentProduct(id, setProduct, setLoading, setError) 
+
+                //If the product hasn't been updated already, we juste take add it in the array
             } else {
                 document.title = currentProduct.title || updatedProduct.title
+                setLoading(false)
             }
-        }    
+        }   
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -92,6 +100,9 @@ export const ProductDetails = () => {
         FetchProduct.updateCurrentProduct(id, product)
     }
 
+    if(isLoading) { return ( <Loading />)}
+    if(hasError) { return (<Error />)}
+
     return(
         product && 
         <article className="article-wrapper">
@@ -119,8 +130,8 @@ export const ProductDetails = () => {
                     <div className="article-price-wrapper">
                         <div className="price-info-wrapper">
                         <PriceInput device="€" defaultValue={product.price} />
-
-                            <div className="price-with-vat"><span>Price</span> (including VAT): {roundedPrice ? roundedPrice : product.price + product.price*0.2}€</div>
+                            {/* Price is manually rounded for the network adress */}
+                            <div className="price-with-vat"><span>Price</span> (including VAT): {roundedPrice ? roundedPrice : (product.price + product.price*0.2).toFixed(2)}€</div>
                         </div>
                         <div className="update-product">
                             <button type="submit" onClick={handleUpdateProduct} >Update product</button>

@@ -7,6 +7,7 @@ import { ProductCategory } from '../ProductCategory'
  * @returns JSX element
  */
 export const TableProductRow = ({product}) => {
+
     /**
      * Function to go to the product's page using its id
      */
@@ -14,11 +15,17 @@ export const TableProductRow = ({product}) => {
         window.location = `/product/${product.id}`
     }
 
+    const onKeyDown = (e) => {
+        if(e.keyCode === 13) {
+            window.location = `/product/${product.id}`
+        }
+    }
+
     //Limits the number of decimals in prices including VAT
     const priceWithVAT = product.price + product.price*0.2
     
     return (
-        <tr onClick={toProductPage}>
+        <tr onClick={toProductPage} tabIndex="0" onKeyDown={onKeyDown}>
             <td className="product-name">{product.title}</td>
             <td><ProductCategory category={product.category} /></td>
             <td className="product-price">{product.price}€</td>

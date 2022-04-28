@@ -25,7 +25,7 @@ h1 {
 
 /*** MOBILE ***/
 @media screen and (max-width: 490px) {
-    header { padding: 40px 0px }
+    header { padding: 40px 0px ; align-items: flex-start;}
     h1 { font-size: 25px;}
 
     header img { 
