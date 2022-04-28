@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
  * @returns JSX element
  */
 export const SideBar = () => {
+    //Const to check and change window's size and open.close the mobile navbar
     const [isDesktop, setDesktop] = useState(window.innerWidth > 490);
     const [navContent, ToggleNavContent] = useState(false)
 
