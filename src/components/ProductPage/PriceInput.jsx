@@ -1,11 +1,16 @@
 import "../../utils/styles/PriceInput.css"
 
 export const PriceInput = ({device, defaultValue}) => {
+    const preventReload = (e) => {
+        if(e.keyCode === 13) {
+            e.preventDefault()
+        }
+    }
     return(
         <form>
-            <label htmlFor="price-input"></label>
+            <label htmlFor="price-input" style={{display: "none"}}>Label</label>
             <span>{device}</span>
-            <input type="number" defaultValue={defaultValue} id="price-input" />
+            <input type="number" defaultValue={defaultValue} id="price-input" onKeyDown={preventReload}  />
         </form>
     )
 }

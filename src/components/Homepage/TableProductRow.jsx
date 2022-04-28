@@ -15,6 +15,10 @@ export const TableProductRow = ({product}) => {
         window.location = `/product/${product.id}`
     }
 
+    /**
+     * Keyboard navigation for link in each row
+     * @param {event} e 
+     */
     const onKeyDown = (e) => {
         if(e.keyCode === 13) {
             window.location = `/product/${product.id}`
