@@ -11,7 +11,6 @@ import { Error } from "../../pages/Error"
 
 /**
  * Products details to display
- * @param {object} product Product's datas fetched & passed by the parent component
  * @returns JSX element
  */
 export const ProductDetails = () => {
@@ -19,7 +18,7 @@ export const ProductDetails = () => {
     const param = useParams()
     const id = param.id
 
-    //producct takes either no value or an object in localstorage as value 
+    //Product takes either no value or an object in localstorage as value 
     const [product, setProduct] = useState(() => {
         const saved = localStorage.getItem(`Updated product ${id}`);
         const initialValue = JSON.parse(saved);
@@ -29,9 +28,15 @@ export const ProductDetails = () => {
     const [isLoading, setLoading] = useState(true)
     const [hasError, setError] = useState(false)
 
+    //Const to handle enabling of the update button 
+    const [enableButton, setEnableButton] = useState(true)
+    const input = document.querySelector('input')
+    const [inputValue, setInputValue] = useState()
+
 
     let roundedPrice
     if(product.priceWithVAT) { roundedPrice = product.priceWithVAT.toFixed(2)}
+
 
     useEffect(() => {
         //Variables to store & parse localstorage datas
@@ -61,22 +66,19 @@ export const ProductDetails = () => {
     }, [])
 
 
-
     /**
-     * Enabled submit button after the price has been changed in the input
-     * @param {event} e 
+     * Function to enable/disable the update button based on current product's price
      */
-    /*const enabledButton = () => { 
-        let input = document.querySelector('input')
-       
-        if(input) {
-            if(input.valueAsNumber === product.price || input.value === product.price) { 
-                return true
-            } else if(input.valueAsNumber !== product.price || input.value !== product.price) {            
-                 return false 
-            }
+    const enableButtonFunc = () => {
+        //Retreives input value
+        setInputValue(input.valueAsNumber)
+            //Change disabled attribute value based on input value
+            if(inputValue !== product.price) {
+                setEnableButton(false) 
+            } else {
+            setEnableButton(true)
         }
-    } */
+    }
 
 
     /**
@@ -129,12 +131,12 @@ export const ProductDetails = () => {
                     <h2>Price</h2>
                     <div className="article-price-wrapper">
                         <div className="price-info-wrapper">
-                        <PriceInput device="€" defaultValue={product.price} />
+                        <PriceInput device="€" defaultValue={product.price} checkValueFunc={enableButtonFunc} />
                             {/* Price is manually rounded for the network adress */}
                             <div className="price-with-vat"><span>Price</span> (including VAT): {roundedPrice ? roundedPrice : (product.price + product.price*0.2).toFixed(2)}€</div>
                         </div>
                         <div className="update-product">
-                            <button type="submit" onClick={handleUpdateProduct} >Update product</button>
+                            <button type="submit" onClick={handleUpdateProduct} disabled={enableButton} >Update product</button>
                         </div>
                     </div>
                 </div>
