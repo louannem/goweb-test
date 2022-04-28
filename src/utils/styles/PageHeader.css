@@ -15,3 +15,9 @@ h1 {
     letter-spacing: 0px;
     margin: auto;
 }
+
+
+@media screen and (min-width: 490px) and (max-width: 1000px) {
+    header { align-items: flex-start;}
+    h1 { font-size: 30px; line-height: 40px; padding: 0px 10px;}
+}

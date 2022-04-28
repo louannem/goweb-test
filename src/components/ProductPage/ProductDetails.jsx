@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { FetchProduct } from "../../utils/Service/FetchProduct"
 import "../../utils/styles/ProductDetails.css"
 import { ProductCategory } from "../ProductCategory"
+import { PriceInput } from "./PriceInput"
 import { Product } from "../../utils/Service/Product"
 import PropTypes from "prop-types"
 
@@ -46,7 +47,8 @@ export const ProductDetails = () => {
             } else {
                 document.title = currentProduct.title || updatedProduct.title
             }
-        }       
+        }   
+  
     }, [])
 
 
@@ -61,8 +63,7 @@ export const ProductDetails = () => {
         if(input) {
             if(input.valueAsNumber === product.price || input.value === product.price) { 
                 return true
-            } else if(input.valueAsNumber !== product.price || input.value !== product.price) {
-                
+            } else if(input.valueAsNumber !== product.price || input.value !== product.price) {            
                  return false 
             }
         }
@@ -116,14 +117,12 @@ export const ProductDetails = () => {
                     <h2>Price</h2>
                     <div className="article-price-wrapper">
                         <div className="price-info-wrapper">
-                            <form>
-                                <label htmlFor="price-input"></label>
-                                <input type="number" defaultValue={product.price} id="price-input"  onKeyUp={enabledButton} ></input>
-                            </form>
+                        <PriceInput device="€" defaultValue={product.price} />
+
                             <div className="price-with-vat"><span>Price</span> (including VAT): {roundedPrice ? roundedPrice : product.price + product.price*0.2}€</div>
                         </div>
                         <div className="update-product">
-                            <button type="submit" onClick={handleUpdateProduct} disabled={enabledButton()}>Update product</button>
+                            <button type="submit" onClick={handleUpdateProduct} >Update product</button>
                         </div>
                     </div>
                 </div>

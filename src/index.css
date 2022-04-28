@@ -14,16 +14,23 @@ code {
     monospace;
 }
 
-#root { 
+:root {
   ---main-blue: #564AFF; 
   ---lightgrey: #FBFBFB;
   ---grey: #0000001A;
   ---darkgrey: #707070;
   ---orange: #FFA846;
   ---green : #32B436;
+}
+
+#root { 
   display: flex;
   background-color: var(---lightgrey);
 }
 
 
 .page-wrapper { padding: 0px 50px; box-sizing: border-box; width: 100%;}
+
+@media screen and (min-width: 490px) and (max-width: 1200px) {
+  .page-wrapper { padding: 0px 25px;}
+}

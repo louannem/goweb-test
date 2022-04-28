@@ -41,3 +41,8 @@ nav ul li { list-style-type: none; margin-bottom: 33px; color: #FFFFFF;}
     opacity: 0.5;
     margin-bottom: 33px;
 }
+
+
+@media screen and (min-width: 490px) and (max-width: 1000px) {
+    nav { width: 15%}
+}

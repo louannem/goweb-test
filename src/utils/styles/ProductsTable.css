@@ -47,3 +47,12 @@ tr {
     color: var(---darkgrey);
     text-align: right;
 }
+
+
+@media screen and (min-width: 490px) and (max-width: 1200px) {
+    table { font-size: 14px;}
+    thead th:first-child, tbody td:first-child { width: 40%;}
+    th, tr { font-size: 14px;}
+
+    .product-category { height: 30px; width: 100px; font-size: 14px;} 
+}

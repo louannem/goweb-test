@@ -1,0 +1,41 @@
+form { 
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+form span {
+    position: absolute;
+    right: 12px;
+    color: var(---darkgrey);
+    opacity: 0.5;
+}
+
+
+/*** Hide the arrows on number type input feild*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/**********/
+
+
+.price-info-wrapper input {
+    width: 144px;
+    height: 100%;
+    color: var(---darkgrey);
+    background-color: var(---lightgrey);
+
+    border: 1px solid var(---main-blue);
+    border-radius: 3px;
+    padding: 10px;
+    box-sizing: border-box;
+}
