@@ -33,7 +33,6 @@ export const ProductDetails = () => {
     const input = document.querySelector('input')
     const [inputValue, setInputValue] = useState()
 
-
     let roundedPrice
     if(product.priceWithVAT) { roundedPrice = product.priceWithVAT.toFixed(2)}
 
@@ -71,7 +70,7 @@ export const ProductDetails = () => {
      */
     const enableButtonFunc = () => {
         //Retreives input value
-        setInputValue(input.valueAsNumber)
+        setInputValue(input.value)
             //Change disabled attribute value based on input value
             if(inputValue !== product.price) {
                 setEnableButton(false) 
