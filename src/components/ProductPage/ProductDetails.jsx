@@ -100,6 +100,9 @@ export const ProductDetails = () => {
 
         //Sends the updates product infos to the API
         FetchProduct.updateCurrentProduct(id, product)
+
+        setEnableButton(true)
+
     }
 
     if(isLoading) { return ( <Loading />)}

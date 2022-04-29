@@ -10,7 +10,7 @@ export const PriceInput = ({device, defaultValue, checkValueFunc}) => {
         <form>
             <label htmlFor="price-input" style={{display: "none"}}>Label</label>
             <span>{device}</span>
-            <input type="number" defaultValue={defaultValue} id="price-input" onKeyDown={preventReload} onChange={checkValueFunc} />
+            <input type="number" defaultValue={defaultValue} id="price-input" onKeyDown={preventReload} onKeyUp={checkValueFunc} />
         </form>
     )
 }
