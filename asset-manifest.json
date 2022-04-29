@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/goweb-test/static/css/main.c8c2cddf.css",
-    "main.js": "/goweb-test/static/js/main.51dcbc26.js",
+    "main.js": "/goweb-test/static/js/main.3e3bc917.js",
     "static/js/787.dc7bf6c3.chunk.js": "/goweb-test/static/js/787.dc7bf6c3.chunk.js",
     "index.html": "/goweb-test/index.html",
     "static/media/Logo.svg": "/goweb-test/static/media/Logo.391a969ef7443dd084e962c39533bc0f.svg",
     "static/media/Back_button.svg": "/goweb-test/static/media/Back_button.094e8b4d6119e658b5b2fb20911146cf.svg",
     "main.c8c2cddf.css.map": "/goweb-test/static/css/main.c8c2cddf.css.map",
-    "main.51dcbc26.js.map": "/goweb-test/static/js/main.51dcbc26.js.map",
+    "main.3e3bc917.js.map": "/goweb-test/static/js/main.3e3bc917.js.map",
     "787.dc7bf6c3.chunk.js.map": "/goweb-test/static/js/787.dc7bf6c3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c8c2cddf.css",
-    "static/js/main.51dcbc26.js"
+    "static/js/main.3e3bc917.js"
   ]
 }
