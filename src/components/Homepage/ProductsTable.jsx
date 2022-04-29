@@ -65,7 +65,7 @@ export const ProductsTable = () => {
                 <thead>
                     <tr>
                         <th>Product name</th>
-                        <th>Category</th>
+                        <th className="product-category-header">Category <div className="category-filter-icon"></div></th>
                         <th>Price</th>
                         <th>Price <span>(including VAT)</span></th>
                     </tr>

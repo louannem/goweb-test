@@ -58,14 +58,14 @@ export const ProductDetails = () => {
 
                 //If the product hasn't been updated already, we juste take add it in the array
             } else {
-                
+                document.title = currentProduct.title || updatedProduct.title
                 setLoading(false)
             }
         }   
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    
+
     /**
      * Function to enable/disable the update button based on current product's price
      */

@@ -19,6 +19,14 @@ th span { font-weight: 400;}
     border: none !important;
 }
 
+
+.product-category-header {
+    display: flex;
+    height: 64px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 tr {
     height: 64px;
     box-shadow: 0px 2px 5px #0000001A;
@@ -46,6 +54,15 @@ tr {
 .product-price, .product-price-vat {
     color: var(---darkgrey);
     text-align: right;
+}
+
+.category-filter-icon {
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid #ffffff;
+    margin: 10px;
 }
 
 
