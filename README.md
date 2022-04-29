@@ -33,4 +33,4 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `serve -s build`
-Serve your build into a static server. This project is also available on <a href="louannem.github.io/goweb-test">louannem.github.io/goweb-test</a>.
+Serve your build into a static server. This project is also available on [https://louannem.github.io/goweb-test](https://louannem.github.io/goweb-test).
