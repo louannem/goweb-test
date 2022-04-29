@@ -71,7 +71,9 @@ button[type="submit"] {
     color: #ffffff;
     margin-top: 40px;
     cursor: pointer;
-}
+} 
+
+button:disabled { cursor: default;}
 
 
 /*** TABLET ***/
