@@ -52,5 +52,5 @@ code {
 /*** MOBILE ***/
 @media screen and (max-width: 489px) {
   #root { flex-direction: column;}
-  .page-wrapper { padding: 0px;}
+  .page-wrapper { padding: 0px; padding-bottom: 20px;}
 }

@@ -19,7 +19,7 @@ export class FetchProduct {
                 let newProduct = new Product(product, product.price)
                 productsArray.push(newProduct)
             }
-            //Function to get our data into our component's state
+            //Get our data into our component's state, store it in localStorage & stop loading state
             resolve(productsArray)
             localStorage.setItem('Products array', JSON.stringify(json))
             loading(false) 
@@ -37,6 +37,7 @@ export class FetchProduct {
         await fetch('https://fakestoreapi.com/products/'+id)
         .then(res=>res.json())
         .then(json=> {
+            //Get our data into our component's state, store it in localStorage & stop loading state
             resolve(json) 
             loading()
             localStorage.setItem('Current product', JSON.stringify(json) )
@@ -59,7 +60,7 @@ export class FetchProduct {
         })
             .then(res=>res.json())
             .then(json=> {
-               
+               //
             })
             .catch( error => console.log(error))
     }

@@ -11,6 +11,7 @@ import { Loading } from "./Loading"
  * @returns JSX element
  */
 export const ProductPage = () => {
+    //Get product's id
     const {id} = useParams()
     const [currentProduct, setCurrentProduct] = useState()
 
@@ -20,21 +21,19 @@ export const ProductPage = () => {
 
     useEffect(() => {
         FetchProduct.getCurrentProduct(id, setCurrentProduct, setLoading, setError)
-
         if(currentProduct) { document.title = currentProduct.title}
-
+     // eslint-disable-next-line
     }, [])
 
 
     if(isLoading) { return (<Loading />)}
     if(hasError) { return (<span>Opps ! an error has occured.</span>)}
+
     return(
         currentProduct && 
         <main className="page-wrapper">
             <PageHeader backButton={true} title={currentProduct.title} />
             <ProductDetails />    
         </main>
-        
-        
     )
 }

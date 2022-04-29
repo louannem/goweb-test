@@ -17,11 +17,12 @@ export const ProductsTable = () => {
     const getData = (data) => {
         setProducts(data)
     }
-    
+
     useEffect(() => {
         document.title = "Circle Products"
-
-        
+    })
+    
+    useEffect(() => {        
         //If no fetching has been done, we fetch the products
         if(!localStorage.getItem('Products array')) { 
             FetchProduct.getProducts(getData, changeLoading, setError)
