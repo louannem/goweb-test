@@ -70,7 +70,7 @@ export const ProductDetails = () => {
      */
     const enableButtonFunc = () => {
         //Retreives input value
-        //setInputValue(input.value)
+        input && setInputValue(input.valueAsNumber)
             //Change disabled attribute value based on input value
             if(inputValue !== product.price) {
                 setEnableButton(false) 
@@ -99,6 +99,8 @@ export const ProductDetails = () => {
 
         //Sends the updates product infos to the API
         FetchProduct.updateCurrentProduct(id, product)
+
+        setEnableButton(true)
     }
 
     if(isLoading) { return ( <Loading />)}
