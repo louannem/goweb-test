@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { ProductCategory } from '../ProductCategory'
+import {useNavigate} from 'react-router-dom'
 
 /**
  * Table row to display each product needed details
@@ -7,12 +8,13 @@ import { ProductCategory } from '../ProductCategory'
  * @returns JSX element
  */
 export const TableProductRow = ({product}) => {
+    const navigate = useNavigate()
 
     /**
      * Function to go to the product's page using its id
      */
     const toProductPage = () => {
-        window.location = `/product/${product.id}`
+        navigate(`/product/${product.id}`)
     }
 
     /**
