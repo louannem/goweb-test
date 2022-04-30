@@ -1,7 +1,7 @@
 # About this project
 
 A front-end test for the Goweb agency.
-This app allows its user to check a list of product fetched via a REST API, see a product on an individual page and change its price.
+This app allows its user to check a list of product fetched via a fakestoreapi.com API, see a product on an individual page and change its price.
 
 ## Dependencies
 - React v18
