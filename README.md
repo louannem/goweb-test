@@ -33,5 +33,5 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `serve -s build`
-You can serve your build into a static server. Install serve by run the `npm install -g serve` command. You can then run `serve -s build` to deploy the app on a static server.\
+You can serve your build into a static server. Install serve by running the `npm install -g serve` command. You can then run `serve -s build` to deploy the app on a static server.\
 This project is also available on [https://louannem.github.io/goweb-test](https://louannem.github.io/goweb-test).
