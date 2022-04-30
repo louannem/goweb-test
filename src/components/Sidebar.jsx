@@ -9,14 +9,14 @@ import { useEffect, useState } from "react"
  */
 export const SideBar = () => {
     //Const to check and change window's size and open.close the mobile navbar
-    const [isDesktop, setDesktop] = useState(window.innerWidth > 490);
+    const [isDesktop, setDesktop] = useState(window.innerWidth > 590);
     const [navContent, ToggleNavContent] = useState(false)
 
     /**
      * Function to update window's/screen's size
      */
     const updateMedia = () => {
-      setDesktop(window.innerWidth > 490);
+      setDesktop(window.innerWidth > 590);
     }
   
     useEffect(() => {

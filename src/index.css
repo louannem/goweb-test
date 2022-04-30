@@ -31,7 +31,7 @@ code {
 }
 
 
-.page-wrapper { padding: 0px 50px 200px 50px; box-sizing: border-box; width: 100%; }
+.page-wrapper { padding: 0px 50px 300px 50px; box-sizing: border-box; width: 100%; }
 .loading-page, .error-page { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 16px; color:var(---darkgrey) }
 
 .error-page { display: flex; flex-direction: column;}
@@ -45,12 +45,12 @@ code {
 }
 
 /*** TABLET ***/
-@media screen and (min-width: 490px) and (max-width: 1200px) {
+@media screen and (min-width: 590px) and (max-width: 1200px) {
   .page-wrapper { padding: 0px 25px 100px 25px;}
 }
 
 /*** MOBILE ***/
-@media screen and (max-width: 489px) {
+@media screen and (max-width: 589px) {
   #root { flex-direction: column;}
   .page-wrapper { padding: 0px 0px 100px 0px;}
 }
