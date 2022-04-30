@@ -4,7 +4,7 @@ import logo from "../assets/Logo.svg"
 import { useEffect, useState } from "react"
 
 /**
- * Sidebar component
+ * Sidebar component, for desktop and mobile
  * @returns JSX element
  */
 export const SideBar = () => {

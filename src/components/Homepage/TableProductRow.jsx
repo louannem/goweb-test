@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { ProductCategory } from '../ProductCategory'
 
 /**
- * Table row to display each product needed details
+ * Table row to display each product needed details & link to its page
  * @param {product} object Contains each product infos, fetched from the API 
  * @returns JSX element
  */

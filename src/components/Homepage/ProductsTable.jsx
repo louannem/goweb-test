@@ -5,14 +5,14 @@ import { FetchProduct } from "../../utils/Service/FetchProduct"
 import "../../utils/styles/ProductsTable.css"
 import { TableProductRow } from "./TableProductRow"
 
+/**
+ * Table component
+ * @returns JSX element
+ */
 export const ProductsTable = () => {
     const  [products, setProducts] = useState()
     const [isLoading, setLoading] = useState(true)
     const [hasError, setError] = useState(false)
-
-    const changeLoading = () => {
-        setLoading(false)
-    }
 
     const getData = (data) => {
         setProducts(data)
@@ -25,7 +25,7 @@ export const ProductsTable = () => {
     useEffect(() => {        
         //If no fetching has been done, we fetch the products
         if(!localStorage.getItem('Products array')) { 
-            FetchProduct.getProducts(getData, changeLoading, setError)
+            FetchProduct.getProducts(getData, setLoading, setError)
 
         //Updates current data in localStorage
         } else { 
@@ -52,7 +52,6 @@ export const ProductsTable = () => {
                 setLoading(false)
             }
         }
-
     }, [])
 
     //Loading & error handling

@@ -6,6 +6,7 @@ import BackButton from "../assets/Back_button.svg"
 
 /**
  * Page's header basic component
+ * @param {boolean} backButton Display or hide go back button  
  * @param {string} title Page title 
  * @returns JSX element
  */

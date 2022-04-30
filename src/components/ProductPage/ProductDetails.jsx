@@ -105,6 +105,7 @@ export const ProductDetails = () => {
 
     }
 
+    //Loading & error handling
     if(isLoading) { return ( <Loading />)}
     if(hasError) { return (<Error />)}
 
